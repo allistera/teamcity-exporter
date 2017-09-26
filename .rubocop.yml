@@ -1,0 +1,5 @@
+Metrics/LineLength:
+  Max: 120
+Metrics/MethodLength:
+  Exclude:
+    - 'teamcity_exporter_test.rb'
