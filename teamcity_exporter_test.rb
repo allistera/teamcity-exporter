@@ -21,24 +21,24 @@ class TeamcityExporterTest < Test::Unit::TestCase
   end
 
   def test_success_shows
-    mock_response('FooBar', 'SUCCESS')
+    mock_response(22, 'FooBar', 'SUCCESS')
 
     get '/metrics'
     assert last_response.ok?
-    assert last_response.body.include?('teamcity_project_success{project="FooBar"} 1')
+    assert last_response.body.include?('teamcity_project_success{project="FooBar",id="22"} 1')
   end
 
   def test_failure_shows
-    mock_response('FooBar', 'FAILURE')
+    mock_response(212, 'FooBar', 'FAILURE')
 
     get '/metrics'
     assert last_response.ok?
-    assert last_response.body.include?('teamcity_project_success{project="FooBar"} 0')
+    assert last_response.body.include?('teamcity_project_success{project="FooBar",id="212"} 0')
   end
 
   private
 
-  def mock_response(id, status)
+  def mock_response(id, build_id, status)
     HTTParty.expects(:get).with(
       'http://foo.bar/httpAuth/app/rest/buildTypes/id:test_Project/builds?branchName=master&count=1',
       basic_auth: { username: 'foo', password: 'bar' },
@@ -46,7 +46,8 @@ class TeamcityExporterTest < Test::Unit::TestCase
       format: :json
     ).returns('build' => [
                 {
-                  'buildTypeId' => id,
+                  'buildTypeId' => build_id,
+                  'id' => id,
                   'status' => status
                 }
               ])

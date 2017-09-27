@@ -1,5 +1,5 @@
 # HELP teamcity_project_success Status of the team city project.
 # TYPE teamcity_project_success Gauge
 <% @status.each do |status| %>
-teamcity_project_success{project="<%= status['build'].first['buildTypeId'] %>"} <%= status['build'].first['status'] == 'SUCCESS' ? '1' : '0' %>
+teamcity_project_success{project="<%= status['build'].first['buildTypeId'] %>",id="<%= status['build'].first['id'] %>"} <%= status['build'].first['status'] == 'SUCCESS' ? '1' : '0' %>
 <% end %>
