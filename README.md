@@ -15,9 +15,9 @@ Scrapes status of projects build for its master branch using the TeamCity API an
 
 ## Authors
 
-* **Allister Antosik** - *Initial work* - [PurpleBooth](https://github.com/allistera)
+* **Allister Antosik** - *Initial work* - [allistera](https://github.com/allistera)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/allistera/teamcity-exporter/contributors) who participated in this project.
 
 ## License
 
